@@ -1,3 +1,5 @@
+import { Container } from "./components/container/container";
+
 export function App() {
-  return <h1>Hello Barto!</h1>;
+  return <Container></Container>;
 }
