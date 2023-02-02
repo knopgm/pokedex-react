@@ -1,13 +1,15 @@
 import React from "react";
 import { Container } from "../container/container";
+import { Pokecard } from "./pokecard/pokecard";
 
-export function DeckList() {
+import "./deckList.scss";
+export function DeckList(props, pokemonData) {
   return (
-    <div class="deckList">
+    <div className="deckList">
       <Container>
-        <h1> My deck list</h1>
-        <div class="deckList_grid">
-          <div class="pokecard">Pokecard</div>
+        <h1> My deck list </h1>
+        <div className="deckList_grid">
+          <Pokecard />
         </div>
       </Container>
     </div>

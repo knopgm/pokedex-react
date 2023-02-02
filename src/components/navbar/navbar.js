@@ -5,13 +5,13 @@ import "./navbar.scss";
 
 export function Navbar() {
   return (
-    <div class="navbar">
+    <div className="navbar">
       <Container>
-        <div class="navbar_content">
-          <div class="navbar_logo">
+        <div className="navbar_content">
+          <div className="navbar_logo">
             <img src="../img/pokeball.png" />
           </div>
-          <div class="navbar_search">
+          <div className="navbar_search">
             <h1>Search here</h1>
           </div>
         </div>
