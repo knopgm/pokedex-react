@@ -10,6 +10,7 @@ const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=100";
 
 export function App() {
   const [pokemonData, setPokemonData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     getPokemonListWithAxios();
@@ -18,8 +19,13 @@ export function App() {
   const getPokemonListWithAxios = async () => {
     const response = await axios.get(apiUrl);
     setPokemonData(response.data.results);
+    setLoading(false);
     console.log(response.data.results);
   };
+
+  if (isLoading) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <>
