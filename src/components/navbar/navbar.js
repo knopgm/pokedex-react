@@ -11,9 +11,7 @@ export function Navbar() {
           <div className="navbar_logo">
             <img src="../img/pokeball.png" />
           </div>
-          <div className="navbar_search">
-            <h1>Search here</h1>
-          </div>
+          <div className="navbar_between"></div>
         </div>
       </Container>
     </div>

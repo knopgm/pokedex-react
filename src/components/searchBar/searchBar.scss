@@ -1,0 +1,29 @@
+.searchbar {
+  background-color: antiquewhite;
+  text-align: center;
+}
+.search {
+  background-color: white;
+}
+.searchbar_input {
+  width: 20rem;
+  background-color: white;
+  border: none;
+  padding: 0.5rem;
+}
+.searchedList {
+  color: black;
+}
+.pokemonSearchedList {
+  position: absolute;
+  background-color: cadetblue;
+}
+.pokemonSearchedList_item {
+  padding: 3px 15px;
+}
+
+@media all and (max-width: 500px) {
+  .searchbar {
+    width: 30em;
+  }
+}
