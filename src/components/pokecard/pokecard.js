@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./pokecard.scss";
+import "./pokeCard.scss";
 
 // props = js object
 //   keys
@@ -8,17 +8,11 @@ import "./pokecard.scss";
 //      onClick: anonymous function
 //      className: String
 
-export function Pokecard(props) {
-  const { name, onClick } = props;
-
-  handleCardClick = (e) => {
-    console.log(e);
-  };
-
+export function PokeCard({ pokemonCardInfos }) {
   return (
-    <div className="pokecard-wrapper" onClick={handleCardClick}>
+    <div className="pokecard-wrapper">
       <h1>Pokecard</h1>
-      <h1>{name}</h1>
+      <h1>Choosed Pokemon: {name}</h1>
     </div>
   );
 }

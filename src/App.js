@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DeckList } from "./components/deckList/deckList";
 import { Navbar } from "./components/navbar/navbar";
 import { SearchBar } from "./components/searchBar/searchBar";
-import { Pokecard } from "./components/pokecard/pokecard";
+import { PokeCard } from "./components/pokeCard/pokeCard";
 import axios from "axios";
 
 import "./styles.scss";
@@ -15,6 +15,8 @@ export function App() {
   const [isLoading, setLoading] = useState(true);
   const [keyword, setKeyword] = useState("");
   const [error, setError] = useState(null);
+  const [isOpenCard, setOpenCard] = useState(false);
+  const [pokemonCardInfos, setPokemonCardInfos] = useState([]);
 
   //1: Will call the function that gets the pokemon infos only 1x -> []
   useEffect(() => {
@@ -37,37 +39,26 @@ export function App() {
   };
 
   // search bar tutorial: https://geshan.com.np/blog/2022/10/react-search-bar/
-  //4: When something is typed on the serach bar input, the value came back to be save in the keyword state
+  //3: When something is typed on the search bar input, the value came back to be save in the keyword state
   const updateKeyword = (keyword) => {
     setKeyword(keyword);
   };
 
-  // 5: Function to use the keyword saved to filter on the pokemon list
-  const filtered = pokemonData.filter((pokemon) => {
-    return pokemon.name.toLowerCase().includes(keyword.toLowerCase());
-  });
-  console.log("filtered api", filtered);
+  //4: Variable with the pokemon list that could be changed if something is typed on the search input
+  let filteredPokemons = pokemonData;
 
-  const displayPokemon = () => {
-    if (filtered) {
-      //6: if is anything on the filtered function, it will select the display cards from this list
-      return (
-        <ul className="pokemonSearchedList" role="list">
-          {filtered.map((pokemon) => (
-            <Pokecard name={pokemon.name} key={pokemon.name} />
-          ))}
-        </ul>
-      );
-    } else {
-      //3: if there is nothing to be filtered, it will display the pokemon entire list
-      return (
-        <ul className="pokemonSearchedList" role="list">
-          {pokemonData.map((pokemon) => (
-            <Pokecard name={pokemon.name} key={pokemon.name} />
-          ))}
-        </ul>
-      );
-    }
+  //5: Condicion to update the declared variable "filceredPokemons", if is a keyword typed with a length > 0
+  if (keyword && keyword.length > 0) {
+    filteredPokemons = pokemonData.filter((pokemon) => {
+      return pokemon.name.toLowerCase().includes(keyword.toLowerCase());
+    });
+  }
+
+  let choosedPokemonInfos = {};
+  //6: Function to set to true the state of a open pokemon card
+  const handlePokemonClick = (pokemonName) => {
+    console.log("clicked on", pokemonName);
+    setOpenCard(true);
   };
 
   return (
@@ -76,7 +67,11 @@ export function App() {
       <SearchBar keyword={keyword} onChange={updateKeyword} />
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div>{`Problem fetching the Pokemon data - ${error}`}</div>}
-      <DeckList pokemonFiltered={displayPokemon} />
+      {isOpenCard && <PokeCard pokemonCardInfos={pokemonCardInfos} />}
+      <DeckList
+        pokemons={filteredPokemons}
+        onPokemonClick={handlePokemonClick}
+      />
     </>
   );
 }
