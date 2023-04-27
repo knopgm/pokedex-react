@@ -11,8 +11,8 @@ export function DeckList({ pokemons, onPokemonClick }) {
     <div className="deckList">
       <Container>
         <h1> My deck list</h1>
-        <div className="deckList_grid">
-          <ul className="pokemonSearchedList" role="list">
+        <div className="deckList">
+          <ul className="pokemonSearchedList_grid" role="list">
             {pokemons.map((pokemon) => (
               <PokeButton
                 name={pokemon.name}

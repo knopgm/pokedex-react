@@ -9,7 +9,7 @@ import "./pokeCard.scss";
 //      onClick: anonymous function
 //      className: String
 
-export function PokeCard({ name, url }) {
+export function PokeCard({ url, closePokeCard }) {
   const [pokemonData, setPokemonData] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,7 +24,6 @@ export function PokeCard({ name, url }) {
     try {
       const response = await axios.get(url);
       setPokemonData(response.data);
-
       setError(null);
       console.log("fetched api", response.data);
     } catch (err) {
@@ -35,28 +34,36 @@ export function PokeCard({ name, url }) {
     }
   };
 
+  const handleClick = () => {
+    closePokeCard();
+  };
+
   return (
     <>
+      <div className="pokecard-overlay"></div>
       {isLoading && <div className="loading">Loading...</div>}
       {pokemonData && (
         <div className="pokecard-wrapper">
           <div className="pokecard-topbar">
-            <h1>{pokemonData.id}</h1>
-            <h1> {pokemonData.name.toUpperCase()}</h1>
-            <h1>x</h1>
+            <h1>#{pokemonData.id}</h1>
+            <h1 className="topbar_name">{pokemonData.name}</h1>
+            <h1 role="button" onClick={handleClick}>
+              x
+            </h1>
           </div>
-          <div>Height: {pokemonData.height}</div>
-          <div>Weight: {pokemonData.weight}</div>
-          <div>
-            Types:{pokemonData.types.map((index) => ` - ${index.type.name}`)}
-          </div>
-          <div>
-            Abilities:{" "}
-            {pokemonData.abilities.map((index) => ` - ${index.ability.name}`)}
-          </div>
-          <div>
-            Image:{" "}
-            <img src={pokemonData.sprites.other.dream_world.front_default} />
+          <div className="pokecard-content">
+            <div>Height: {pokemonData.height}</div>
+            <div>Weight: {pokemonData.weight}</div>
+            <div>
+              Types:{pokemonData.types.map((index) => ` - ${index.type.name}`)}
+            </div>
+            <div>
+              Abilities:{" "}
+              {pokemonData.abilities.map((index) => ` - ${index.ability.name}`)}
+            </div>
+            <div className="pokecard-image">
+              <img src={pokemonData.sprites.other.dream_world.front_default} />
+            </div>
           </div>
         </div>
       )}

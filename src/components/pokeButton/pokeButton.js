@@ -2,8 +2,6 @@ import React from "react";
 
 import "./pokeButton.scss";
 
-const PokemonButtonTitle = "PokeButton";
-
 // props = js object
 //   keys
 //      name: String
@@ -19,8 +17,9 @@ export function PokeButton(props) {
 
   return (
     <div className="pokebutton-wrapper" onClick={handleClick}>
-      <h1>{PokemonButtonTitle}</h1>
-      <h1>{name}</h1>
+      <h1 className="pokebutton" role="button">
+        {name}
+      </h1>
     </div>
   );
 }

@@ -68,6 +68,10 @@ export function App() {
 
   console.log(selectedPokemon);
 
+  const handleCloseModal = () => {
+    setOpenCard(false);
+  };
+
   return (
     <>
       <Navbar />
@@ -75,7 +79,11 @@ export function App() {
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div>{`Problem fetching the Pokemon data - ${error}`}</div>}
       {isOpenCard && (
-        <PokeCard name={selectedPokemon.name} url={selectedPokemon.url} />
+        <PokeCard
+          name={selectedPokemon.name}
+          url={selectedPokemon.url}
+          closePokeCard={handleCloseModal}
+        />
       )}
       <DeckList
         pokemons={filteredPokemons}
