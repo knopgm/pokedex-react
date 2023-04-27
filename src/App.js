@@ -16,7 +16,7 @@ export function App() {
   const [keyword, setKeyword] = useState("");
   const [error, setError] = useState(null);
   const [isOpenCard, setOpenCard] = useState(false);
-  const [pokemonCardInfos, setPokemonCardInfos] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   //1: Will call the function that gets the pokemon infos only 1x -> []
   useEffect(() => {
@@ -54,12 +54,19 @@ export function App() {
     });
   }
 
-  let choosedPokemonInfos = {};
   //6: Function to set to true the state of a open pokemon card
   const handlePokemonClick = (pokemonName) => {
     console.log("clicked on", pokemonName);
+
+    const choosedPokemonInfos = pokemonData.find((pokemon) => {
+      return pokemon.name === pokemonName;
+    });
+
+    setSelectedPokemon(choosedPokemonInfos);
     setOpenCard(true);
   };
+
+  console.log(selectedPokemon);
 
   return (
     <>
@@ -67,7 +74,9 @@ export function App() {
       <SearchBar keyword={keyword} onChange={updateKeyword} />
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div>{`Problem fetching the Pokemon data - ${error}`}</div>}
-      {isOpenCard && <PokeCard pokemonCardInfos={pokemonCardInfos} />}
+      {isOpenCard && (
+        <PokeCard name={selectedPokemon.name} url={selectedPokemon.url} />
+      )}
       <DeckList
         pokemons={filteredPokemons}
         onPokemonClick={handlePokemonClick}
