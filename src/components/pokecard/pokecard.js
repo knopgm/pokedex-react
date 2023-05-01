@@ -65,6 +65,11 @@ export function PokeCard({ url, closePokeCard }) {
               <img src={pokemonData.sprites.other.dream_world.front_default} />
             </div>
           </div>
+          <div className="pokecard-button_close_wrapper">
+            <div className="pokecard-button_close" onClick={handleClick}>
+              Close
+            </div>
+          </div>
         </div>
       )}
     </>

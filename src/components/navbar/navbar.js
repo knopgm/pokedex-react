@@ -9,7 +9,7 @@ export function Navbar() {
       <Container>
         <div className="navbar_content">
           <div className="navbar_logo">
-            <img src="../img/pokeball.png" />
+            <img src={require("../../img/pokeball.png")} />
           </div>
           <div className="navbar_between"></div>
         </div>

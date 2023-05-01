@@ -10,22 +10,25 @@
 }
 
 .pokecard-wrapper {
-  background-color: darkseagreen;
+  display: grid;
+  background-color: white;
   width: 400px;
-  height: 600px;
   z-index: 101;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  padding: 5px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  align-content: space-evenly;
 }
 
 .pokecard-topbar {
-  background-color: lightgoldenrodyellow;
+  background-color: white;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   text-align: center;
+  padding: 10px 0px;
 }
 
 .topbar_name {
@@ -38,6 +41,8 @@
   gap: 5px;
   padding: 20px;
   text-align: center;
+  background-color: rgba(120, 200, 80, 0.25);
+  border: 2px solid rgb(78, 130, 52);
 }
 
 .pokecard-image {
@@ -46,4 +51,18 @@
   img {
     width: 100%;
   }
+}
+
+.pokecard-button_close_wrapper {
+  // background-color: aquamarine;
+  text-align: -webkit-right;
+  padding: 10px 15px;
+}
+
+.pokecard-button_close {
+  background-color: #01589a;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  width: fit-content;
 }

@@ -8,7 +8,7 @@ import axios from "axios";
 import "./styles.scss";
 
 //fetch api tutorial: https://www.pluralsight.com/guides/access-data-from-an-external-api-into-a-react-component
-const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=5";
+const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=6";
 
 export function App() {
   const [pokemonData, setPokemonData] = useState([]);
@@ -74,7 +74,7 @@ export function App() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <SearchBar keyword={keyword} onChange={updateKeyword} />
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div>{`Problem fetching the Pokemon data - ${error}`}</div>}
