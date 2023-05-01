@@ -40,16 +40,16 @@ export function PokeCard({ url, closePokeCard }) {
 
   return (
     <>
-      <div className="pokecard-overlay"></div>
+      <div className="pokecard-overlay" onClick={handleClick}></div>
       {isLoading && <div className="loading">Loading...</div>}
       {pokemonData && (
         <div className="pokecard-wrapper">
           <div className="pokecard-topbar">
-            <h1>#{pokemonData.id}</h1>
-            <h1 className="topbar_name">{pokemonData.name}</h1>
-            <h1 role="button" onClick={handleClick}>
+            <h2>#{pokemonData.id}</h2>
+            <h2 className="topbar_name">{pokemonData.name}</h2>
+            <h2 role="button" onClick={handleClick}>
               x
-            </h1>
+            </h2>
           </div>
           <div className="pokecard-content">
             <div>Height: {pokemonData.height}</div>

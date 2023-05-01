@@ -17,9 +17,9 @@ export function PokeButton(props) {
 
   return (
     <div className="pokebutton-wrapper" onClick={handleClick}>
-      <h1 className="pokebutton" role="button">
+      <h2 className="pokebutton" role="button">
         {name}
-      </h1>
+      </h2>
     </div>
   );
 }

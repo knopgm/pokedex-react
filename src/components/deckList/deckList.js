@@ -10,7 +10,7 @@ export function DeckList({ pokemons, onPokemonClick }) {
   return (
     <div className="deckList">
       <Container>
-        <h1> My deck list</h1>
+        <h1>POKEDEX</h1>
         <div className="deckList">
           <ul className="pokemonSearchedList_grid" role="list">
             {pokemons.map((pokemon) => (
