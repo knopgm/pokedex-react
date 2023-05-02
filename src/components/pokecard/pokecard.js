@@ -52,13 +52,20 @@ export function PokeCard({ url, closePokeCard }) {
             </h2>
           </div>
           <div className="pokecard-content">
-            <div>Height: {pokemonData.height}</div>
-            <div>Weight: {pokemonData.weight}</div>
             <div>
-              Types:{pokemonData.types.map((index) => ` - ${index.type.name}`)}
+              <span className="pokecard-content_bold">Height:</span>{" "}
+              {pokemonData.height}
             </div>
             <div>
-              Abilities:{" "}
+              <span className="pokecard-content_bold">Weight:</span>{" "}
+              {pokemonData.weight}
+            </div>
+            <div>
+              <span className="pokecard-content_bold">Types:</span>
+              {pokemonData.types.map((index) => ` - ${index.type.name}`)}
+            </div>
+            <div>
+              <span className="pokecard-content_bold">Abilities:</span>{" "}
               {pokemonData.abilities.map((index) => ` - ${index.ability.name}`)}
             </div>
             <div className="pokecard-image">
