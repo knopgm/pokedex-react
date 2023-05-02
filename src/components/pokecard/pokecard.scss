@@ -37,31 +37,6 @@
   text-transform: capitalize;
 }
 
-.pokecard-content_bold {
-  font-weight: bolder;
-  font-size: 26px;
-}
-
-.pokecard-content {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 20px;
-  text-align: center;
-  background-color: rgba(1, 88, 154, 0.25);
-  border: 2px solid rgb(64, 89, 198);
-  // background-color: rgba(120, 200, 80, 0.25);
-  // border: 2px solid rgb(78, 130, 52);
-}
-
-.pokecard-image {
-  padding: 5px;
-
-  img {
-    width: 100%;
-  }
-}
-
 .pokecard-button_close_wrapper {
   // background-color: aquamarine;
   text-align: -webkit-right;
