@@ -1,9 +1,23 @@
 .deckList_title {
   text-align: center;
+  margin-top: 60px;
 }
 
 .pokemonSearchedList_grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 15px;
+}
+
+@media screen and (min-width: 601px) and (max-width: 991px) {
+  .pokemonSearchedList_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .pokemonSearchedList_grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+  }
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { DeckList } from "./components/deckList/deckList";
-import { Navbar } from "./components/navbar/navbar";
 import { SearchBar } from "./components/searchBar/searchBar";
 import { PokeCard } from "./components/pokeCard/pokeCard";
 import axios from "axios";
 
 import "./styles.scss";
+import "./App.scss";
 
 //fetch api tutorial: https://www.pluralsight.com/guides/access-data-from-an-external-api-into-a-react-component
-const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=6";
+const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=600";
 
 export function App() {
   const [pokemonData, setPokemonData] = useState([]);
@@ -17,6 +17,7 @@ export function App() {
   const [error, setError] = useState(null);
   const [isOpenCard, setOpenCard] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [sortPokemonsBy, setSortPokemonsBy] = useState("none");
 
   //1: Will call the function that gets the pokemon infos only 1x -> []
   useEffect(() => {
@@ -29,7 +30,6 @@ export function App() {
       const response = await axios.get(apiUrl);
       setPokemonData(response.data.results);
       setError(null);
-      console.log("fetched api", response.data.results);
     } catch (err) {
       setError(err.message);
       setPokemonData(null);
@@ -44,20 +44,8 @@ export function App() {
     setKeyword(keyword);
   };
 
-  //4: Variable with the pokemon list that could be changed if something is typed on the search input
-  let filteredPokemons = pokemonData;
-
-  //5: Condicion to update the declared variable "filceredPokemons", if is a keyword typed with a length > 0
-  if (keyword && keyword.length > 0) {
-    filteredPokemons = pokemonData.filter((pokemon) => {
-      return pokemon.name.toLowerCase().includes(keyword.toLowerCase());
-    });
-  }
-
   //6: Function to set to true the state of a open pokemon card
   const handlePokemonClick = (pokemonName) => {
-    console.log("clicked on", pokemonName);
-
     const choosedPokemonInfos = pokemonData.find((pokemon) => {
       return pokemon.name === pokemonName;
     });
@@ -66,16 +54,57 @@ export function App() {
     setOpenCard(true);
   };
 
-  console.log(selectedPokemon);
-
+  //7: Function to set openCard state to false and close the modal
   const handleCloseModal = () => {
     setOpenCard(false);
   };
 
+  handleOnSortingChange = (newValue) => {
+    setSortPokemonsBy(newValue);
+  };
+
+  //4: Variable with the pokemon list that could be changed if something is typed on the search input
+  let filteredPokemons = pokemonData;
+
+  //5: Condicion to update the declared variable "filteredPokemons", if is a keyword typed with a length > 0
+  if (keyword && keyword.length > 0) {
+    filteredPokemons = pokemonData.filter((pokemon) => {
+      return pokemon.name.toLowerCase().includes(keyword.toLowerCase());
+    });
+  }
+
+  //10: Sorting pokemon order:
+  let sorteredPokemons = filteredPokemons;
+
+  if (sortPokemonsBy === "descending") {
+    sorteredPokemons = [...sorteredPokemons].sort((a, b) =>
+      a.item > b.item ? 1 : -1
+    );
+  }
+  if (sortPokemonsBy === "ascending") {
+    sorteredPokemons = [...sorteredPokemons].sort((a, b) =>
+      a.item < b.item ? -1 : 1
+    );
+  }
+  if (sortPokemonsBy === "az") {
+    sorteredPokemons = [...sorteredPokemons].sort((a, b) =>
+      a.name > b.name ? 1 : -1
+    );
+  }
+  if (sortPokemonsBy === "za") {
+    sorteredPokemons = [...sorteredPokemons].sort((a, b) =>
+      a.name > b.name ? -1 : 1
+    );
+  }
+
   return (
     <>
-      {/* <Navbar /> */}
-      <SearchBar keyword={keyword} onChange={updateKeyword} />
+      <SearchBar
+        keyword={keyword}
+        sortValue={sortPokemonsBy}
+        onChange={updateKeyword}
+        onSortingChange={handleOnSortingChange}
+      />
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div>{`Problem fetching the Pokemon data - ${error}`}</div>}
       {isOpenCard && (
@@ -85,10 +114,12 @@ export function App() {
           closePokeCard={handleCloseModal}
         />
       )}
-      <DeckList
-        pokemons={filteredPokemons}
-        onPokemonClick={handlePokemonClick}
-      />
+      <div className="app_content">
+        <DeckList
+          pokemons={sorteredPokemons}
+          onPokemonClick={handlePokemonClick}
+        />
+      </div>
     </>
   );
 }

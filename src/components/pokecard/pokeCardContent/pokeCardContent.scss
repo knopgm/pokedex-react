@@ -17,8 +17,15 @@
 
 .pokecard-image {
   padding: 5px;
+  justify-content: center;
+  display: flex;
 
   img {
-    width: 100%;
+    width: 200px;
+    @media screen and (min-width: 500px) {
+      & {
+        width: 100%;
+      }
+    }
   }
 }

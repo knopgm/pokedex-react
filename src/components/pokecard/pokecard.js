@@ -26,7 +26,6 @@ export function PokeCard({ url, closePokeCard }) {
       const response = await axios.get(url);
       setPokemonData(response.data);
       setError(null);
-      console.log("fetched api", response.data);
     } catch (err) {
       setError(err.message);
       setPokemonData(null);
@@ -49,7 +48,7 @@ export function PokeCard({ url, closePokeCard }) {
             <div className="pokecard-topbar">
               <h2>#{pokemonData.id}</h2>
               <h2 className="topbar_name">{pokemonData.name}</h2>
-              <h2 role="button" onClick={handleClick}>
+              <h2 role="button" onClick={handleClick} className="topbar_x">
                 x
               </h2>
             </div>

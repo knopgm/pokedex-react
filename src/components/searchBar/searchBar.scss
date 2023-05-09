@@ -1,33 +1,88 @@
 .searchbar_wrapper {
   display: grid;
-  grid-template-columns: 1fr 6fr 1fr;
-  padding: 0px 6px;
+  grid-template-rows: 1fr 1fr;
+
+  text-align: -webkit-center;
+
+  @media screen and (min-width: 601px) {
+    & {
+      grid-template-columns: 1fr 5fr;
+      height: 70px;
+      gap: 6px;
+      align-items: center;
+    }
+  }
+}
+
+.searchbar_sorting_wrapper {
+  grid-template-columns: 3fr 2fr;
+  width: 100%;
   gap: 6px;
-  align-items: center;
+  display: grid;
+  padding-bottom: 4px;
+
+  @media screen and (min-width: 601px) {
+    & {
+      align-items: center;
+      justify-items: center;
+      padding: unset;
+    }
+  }
 }
 
 .searchbar_img_wrapper {
   padding: 5px;
+
+  @media screen and (min-width: 601px) {
+    & {
+      align-content: none;
+    }
+  }
+
+  & img {
+    height: 58px;
+
+    @media screen and (min-width: 601px) {
+      & {
+        height: none;
+      }
+    }
+  }
 }
 
 .searchbar {
   text-align: center;
-  background-color: rgba(1, 88, 154, 0.3);
+  background-color: #7ea5c5;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  width: 100%;
 }
 .search {
   background-color: white;
 }
+
 .searchbar_input_wrapper {
   padding: 3px;
+  width: 100%;
+  display: flex;
+  align-items: self-end;
+  @media screen and (min-width: 601px) {
+    & {
+      width: 335px;
+      align-self: center;
+    }
+  }
 }
 
 .searchbar_input {
-  width: 20rem;
+  width: 100%;
   background-color: white;
   border: none;
   padding: 0.5rem;
   border-radius: 5px;
   text-align: center;
+  cursor: pointer;
 }
 .searchedList {
   color: black;
@@ -40,8 +95,29 @@
   padding: 3px 15px;
 }
 
-@media all and (max-width: 500px) {
-  .searchbar {
-    width: 30em;
+.sorting_wrapper {
+  justify-self: end;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-self: center;
+  justify-self: center;
+
+  @media screen and (min-width: 601px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+      align-items: center;
+    }
+  }
+}
+
+.sorting_dropdown {
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  padding: 6px;
+
+  & option {
+    cursor: pointer;
   }
 }
