@@ -60,7 +60,7 @@ export function App() {
     setOpenCard(false);
   };
 
-  handleOnSortingChange = (newValue) => {
+  const handleOnSortingChange = (newValue) => {
     setSortPokemonsBy(newValue);
   };
 
