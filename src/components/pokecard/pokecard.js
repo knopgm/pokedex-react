@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { PokeCardContent } from "./pokeCardContent/pokeCardContent";
+import { Loader } from "../loading/loading";
 import axios from "axios";
 
 import "./pokeCard.scss";
-
-// props = js object
-//   keys
-//      name: String
-//      onClick: anonymous function
-//      className: String
 
 export function PokeCard({ url, closePokeCard }) {
   const [pokemonData, setPokemonData] = useState(null);
@@ -44,7 +39,7 @@ export function PokeCard({ url, closePokeCard }) {
       <div className="pokecard-wrapper">
         {pokemonData && (
           <>
-            {isLoading && <div className="loading">Loading...</div>}
+            {isLoading && <Loader />}
             <div className="pokecard-topbar">
               <h2>#{pokemonData.id}</h2>
               <h2 className="topbar_name">{pokemonData.name}</h2>

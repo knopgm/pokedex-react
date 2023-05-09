@@ -3,12 +3,8 @@ import { Container } from "../container/container";
 import { PokeButton } from "../pokeButton/pokeButton";
 
 import "./deckList.scss";
-// pokemons
-//  -> Array
-//        {name: "dsadsa"}
-export function DeckList({ pokemons, onPokemonClick }) {
-  console.log("index", pokemons);
 
+export function DeckList({ pokemons, onPokemonClick }) {
   return (
     <div className="deckList">
       <Container>

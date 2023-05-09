@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DeckList } from "./components/deckList/deckList";
 import { SearchBar } from "./components/searchBar/searchBar";
 import { PokeCard } from "./components/pokeCard/pokeCard";
+import { Loader } from "./components/loading/loading";
 import axios from "axios";
 
 import "./styles.scss";
@@ -105,7 +106,7 @@ export function App() {
         onChange={updateKeyword}
         onSortingChange={handleOnSortingChange}
       />
-      {isLoading && <div className="loading">Loading...</div>}
+      {isLoading && <Loader />}
       {error && <div>{`Problem fetching the Pokemon data - ${error}`}</div>}
       {isOpenCard && (
         <PokeCard

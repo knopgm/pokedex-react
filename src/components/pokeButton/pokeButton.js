@@ -2,12 +2,6 @@ import React from "react";
 
 import "./pokeButton.scss";
 
-// props = js object
-//   keys
-//      name: String
-//      onClick: anonymous function
-//      className: String
-
 export function PokeButton(props) {
   const { name, onClick } = props;
 

@@ -2,12 +2,6 @@ import React from "react";
 
 import "./pokeCardContent.scss";
 
-// props = js object
-//   keys
-//      name: String
-//      onClick: anonymous function
-//      className: String
-
 export function PokeCardContent({ height, weight, types, abilities, sprites }) {
   return (
     <>
