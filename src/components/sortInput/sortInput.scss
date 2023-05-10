@@ -1,0 +1,17 @@
+.sorting_wrapper {
+  width: 100%;
+  gap: 6px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.sorting_dropdown {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 6px;
+
+  & option {
+    cursor: pointer;
+  }
+}

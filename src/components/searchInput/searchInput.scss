@@ -1,0 +1,16 @@
+.search_input_wrapper {
+  @media screen and (min-width: 601px) {
+    & {
+      width: 335px;
+    }
+  }
+}
+
+.search_input {
+  width: 100%;
+  background-color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}

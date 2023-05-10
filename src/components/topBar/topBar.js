@@ -1,9 +1,22 @@
 import React from "react";
 import { Container } from "../container/container";
 
-import "./searchBar.scss";
+import "./topBar.scss";
 
-export function SearchBar({ keyword, sortValue, onChange, onSortingChange }) {
+export function TopBar({ children }) {
+  return (
+    <div className="topbar">
+      <Container>
+        <div className="topbar_wrapper">
+          <div className="topbar_logo">
+            <img src={require("../../img/logo.png")} />
+          </div>
+          <div className="topbar_right_container">{children}</div>
+        </div>
+      </Container>
+    </div>
+  );
+
   return (
     <div className="searchbar">
       <Container>
